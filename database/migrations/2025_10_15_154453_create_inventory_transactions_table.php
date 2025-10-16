@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inventory_transactions', function (Blueprint $table) {
             $table->id('trans_id');
-            $table->foreignId('prod_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('prod_id')->constrained('products', 'prod_id')->onUpdate('cascade')->onDelete('cascade');
             $table->string('trans_type');
             $table->string('trans_reference')->nullable();
             $table->integer('trans_qty');

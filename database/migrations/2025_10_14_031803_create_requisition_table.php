@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('requisitions', function (Blueprint $table) {
             $table->id('req_id');
             $table->string('req_num')->unique();
-            $table->foreignId('req_by')->constrained('employees')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('req_by')->constrained('employees', 'employee_id')->onUpdate('cascade')->onDelete('cascade');
             $table->date('request_date');
             $table->date('require_date');
             $table->string('req_status');

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id('po_id');
             $table->string('po_num')->unique();
-            $table->foreignId('req_id')->nullable()->constrained('requisitions')->onUpdate('cascade')->onDelete('set null');
-            $table->foreignId('supplier_id')->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('ordered_by')->constrained('employees')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('req_id')->nullable()->constrained('requisitions', 'req_id')->onUpdate('cascade')->onDelete('set null');
+            $table->foreignId('supplier_id')->constrained('suppliers', 'supplier_id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('ordered_by')->constrained('employees', 'employee_id')->onUpdate('cascade')->onDelete('cascade');
             $table->date('order_date');
             $table->string('po_status');
             $table->timestamps();

@@ -15,19 +15,19 @@ return new class extends Migration
             $table->id('sms_id');
             $table->foreignId('req_id')
                   ->nullable()
-                  ->constrained('requisitions')
+                  ->constrained('requisitions', 'req_id')
                   ->onUpdate('cascade')
                   ->onDelete('set null');
 
             $table->foreignId('supplier_id')
                   ->nullable()
-                  ->constrained('suppliers')
+                  ->constrained('suppliers', 'supplier_id')
                   ->onUpdate('cascade')
                   ->onDelete('set null');
 
             $table->foreignId('employee_id')
                   ->nullable()
-                  ->constrained('employees')
+                  ->constrained('employees', 'employee_id')
                   ->onUpdate('cascade')
                   ->onDelete('set null');
 

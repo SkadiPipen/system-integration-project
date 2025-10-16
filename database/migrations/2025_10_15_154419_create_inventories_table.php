@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id('inv_id');
-            $table->foreignId('prod_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('prod_id')->constrained('products','prod_id')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('qty_onhand')->default(0);
             $table->integer('reorder_lvl')->default(0);
             $table->date('last_upd')->nullable();

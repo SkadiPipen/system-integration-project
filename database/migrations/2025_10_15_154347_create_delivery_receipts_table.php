@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('delivery_receipts', function (Blueprint $table) {
             $table->id('dr_id');
-            $table->foreignId('po_id')->constrained('purchase_orders')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('received_by')->constrained('employees')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('po_id')->constrained('purchase_orders', 'po_id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('received_by')->constrained('employees','employee_id')->onUpdate('cascade')->onDelete('cascade');
             $table->date('delivery_date');
             $table->text('del_remarks')->nullable();
             $table->timestamps();

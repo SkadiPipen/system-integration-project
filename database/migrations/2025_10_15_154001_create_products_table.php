@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('unit');
             $table->decimal('unit_price', 10, 2);
-            $table->foreignId('supplier_id')->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('supplier_id')->constrained('suppliers', 'supplier_id')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
