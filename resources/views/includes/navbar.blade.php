@@ -11,9 +11,23 @@
             <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Community</a>
             <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Resources</a>
             <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Contact</a>
-            <a href="#" class="ml-4 px-4 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:text-white transition">
+            
+            <!-- Login Button - Only show when user is NOT logged in -->
+            @guest
+            <a href="{{ route('login.form') }}" class="ml-4 px-4 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:text-white transition">
                 Log in
             </a>
+            @endguest
+            
+            <!-- Show when user IS logged in -->
+            @auth
+            <form action="{{ route('logout') }}" method="POST" class="ml-4">
+                @csrf
+                <button type="submit" class="px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-500 hover:text-white transition">
+                    Logout
+                </button>
+            </form>
+            @endauth
         </div>
 
         <!-- Mobile Menu Button (optional - not implemented fully here) -->
