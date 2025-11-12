@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('e_email')->unique();
             $table->string('e_num');
             $table->string('password');
-            $table->string('contact_num');
+            $table->string('contact_num')->nullable();
             $table->timestamps();
         });
     }
