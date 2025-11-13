@@ -1,8 +1,8 @@
 <nav class="bg-white border-b border-gray-200">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
         <!-- Logo -->
-        <a href="/" class="flex items-center">
-            <img src="{{ asset('images/logo.png') }}" alt="Fesmera Inc. Logo" class="h-10 w-auto rounded-full">
+        <a href="{{ route('home') }}" class="flex items-center">
+            <img src="{{ asset('images/logo.png') }}" alt="Fesmera Inc." class="h-10 w-auto rounded-full">
         </a>
 
         <!-- Top Home Menu -->
@@ -11,6 +11,11 @@
             <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Community</a>
             <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Resources</a>
             <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Contact</a>
+
+            <!-- Admin Pending - Only show when someone registered, button sa navbar churva -->
+            <!-- @if(Auth::user()->position === 'owner')
+                <a href="{{ route('admin.pending') }}" class="text-gray-700 hover:text-gray-900 font-medium">Pending Approvals</a>
+            @endif -->
             
             <!-- Login Button - Only show when user is NOT logged in -->
             @guest
@@ -21,12 +26,25 @@
             
             <!-- Show when user IS logged in -->
             @auth
-            <form action="{{ route('logout') }}" method="POST" class="ml-4">
-                @csrf
-                <button type="submit" class="px-4 py-2 border border-red-500 text-red-500 rounded-md hover:bg-red-500 hover:text-white transition">
-                    Logout
-                </button>
-            </form>
+                <div class="relative" id="user-dropdown">
+                    <button id="dropdown-button" class="flex items-center space-x-1 text-gray-700 hover:text-gray-900 focus:outline-none">
+                        <span>Hi, {{ Auth::user()->f_name }}</span>
+                        <svg class="h-5 w-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+
+                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border hidden">
+                        <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                        <a href="{{ route('notification') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Notifications</a>
+                        <a href="{{ route('settings') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                        <hr class="my-1 border-gray-200">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">Logout</button>
+                        </form>
+                    </div>
+                </div>
             @endauth
         </div>
 
