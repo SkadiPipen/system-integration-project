@@ -14,7 +14,7 @@
 
     <!-- Buttons -->
     <div class="flex flex-wrap justify-center gap-4">
-        <a href="#" class="px-6 py-3 bg-amber-500 text-white font-medium rounded-md hover:bg-amber-600 transition">REQUEST</a>
+        <a href="{{ route('requisition') }}" class="px-6 py-3 bg-amber-500 text-white font-medium rounded-md hover:bg-amber-600 transition">REQUEST</a>
         <a href="#" class="px-6 py-3 bg-emerald-500 text-white font-medium rounded-md hover:bg-emerald-600 transition">PURCHASE</a>
         <a href="#" class="px-6 py-3 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 transition">INVENTORY</a>
     </div>

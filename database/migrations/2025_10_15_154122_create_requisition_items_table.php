@@ -6,25 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('requisition_items', function (Blueprint $table) {
             $table->id('req_item_id');
             $table->foreignId('req_id')->constrained('requisitions', 'req_id')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('prod_id')->constrained('products', 'prod_id')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('qty_requested');
-            $table->integer('qty_approved')->nullable();
-            $table->text('req_remarks')->nullable();
+            $table->integer('quantity');
+            $table->string('unit');
+            $table->text('remarks')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('requisition_items');
