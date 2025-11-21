@@ -15,8 +15,14 @@ return new class extends Migration
             $table->id('req_id');
             $table->string('req_num')->unique();
             $table->foreignId('req_by')->constrained('employees', 'employee_id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('supplier_id')
+                  ->nullable()               
+                  ->constrained('suppliers', 'supplier_id')  
+                  ->onUpdate('cascade')     
+                  ->onDelete('set null');   
             $table->date('request_date');
             $table->date('require_date');
+            $table->text('remarks')->nullable();  
             $table->string('req_status');
             $table->timestamps();
         });

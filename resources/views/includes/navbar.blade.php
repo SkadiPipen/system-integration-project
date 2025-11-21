@@ -12,10 +12,6 @@
             <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Resources</a>
             <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Contact</a>
 
-            <!-- Admin Pending - Only show when someone registered, button sa navbar churva -->
-            <!-- @if(Auth::user()->position === 'owner')
-                <a href="{{ route('admin.pending') }}" class="text-gray-700 hover:text-gray-900 font-medium">Pending Approvals</a>
-            @endif -->
             
             <!-- Login Button - Only show when user is NOT logged in -->
             @guest
